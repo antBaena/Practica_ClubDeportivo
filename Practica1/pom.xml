@@ -53,6 +53,7 @@
 	<!--
 		- El Plugin Surefire se utiliza para ejecutar los tests de la aplicacion. 
 		- El pluging de Jacoco genera el reporte de cobertura.
+		- Jacocco comado: mvn jacoco:prepare-agent test install jacoco:report
 	-->
 	<build>
 		<plugins>
