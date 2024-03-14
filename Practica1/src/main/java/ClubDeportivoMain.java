@@ -4,6 +4,7 @@ import clubdeportivo.Grupo;
 
 public class ClubDeportivoMain {
 	public static void main(String[] args) {
+		// kilombo
 		String [] grupo1 = {"123A","Kizomba","10","10","25.0"};
 		
 		try {
