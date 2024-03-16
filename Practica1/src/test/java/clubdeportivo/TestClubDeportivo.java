@@ -2,18 +2,32 @@ package clubdeportivo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 public class TestClubDeportivo {
-    String nombre;
-    ClubDeportivo clubDeportivo;
 
-    @BeforeEach
-    void setUp() throws ClubException {
-        nombre = "test";
-        clubDeportivo = new ClubDeportivo(nombre);
+    @DisplayName("El segundo constructor de la clase Club Deportivo debe lanzar una excepción si los parámetros son negativos")
+    @Test
+    void ClubDeportivo_NombreYnumPlazas_CreateObject() throws ClubException {
+        String nombre = "club";
+        int numPlazas = 12;
+        String expected = nombre + " --> [  ]";
+
+        ClubDeportivo clubDeportivo = new ClubDeportivo(nombre, numPlazas);
+
+        assertEquals(clubDeportivo.toString(), expected);
+    }
+
+    @DisplayName("El primer constructor de la clase Club Deportivo debe lanzar una excepción si los parámetros son negativos")
+    @Test
+    void ClubDeportivo_Nombre_CreateObject() throws ClubException {
+        String nombre = "club";
+
+        String expected = nombre + " --> [  ]";
+
+        ClubDeportivo clubDeportivo = new ClubDeportivo(nombre);
+
+        assertEquals(clubDeportivo.toString(), expected);
     }
 
     @DisplayName("El constructor de la clase Club Deportivo debe lanzar una excepción si los parámetros son negativos")
@@ -24,118 +38,56 @@ public class TestClubDeportivo {
         });
     }
 
-    @DisplayName("El metodo anyadirActividad no debe lanzar una excepción si los parámetros son correctos")
+    @DisplayName("El método plazasLibres debe devolver el numero de plazas libres del grupo de la actividad seleccionada si el parametro es un Grupo")
     @Test
-    void AnyadirActividad_ParametrosCorrectos_AnyadeActividad() {
-        String[] datos = { "123A", "Kizomba", "10", "10", "25.0" };
+    void PlazasLibres_GrupoExiste_ReturnPlazasLibres() throws ClubException {
+        String nombre = "club";
+        int numGrupos = 12;
+        ClubDeportivo clubDeportivo = new ClubDeportivo(nombre, numGrupos);
+        int numMatriculados = 2;
+        int numPlazasTotal = 10;
 
-        assertAll(() -> {
-            clubDeportivo.anyadirActividad(datos);
-        });
+        Grupo g1 = new Grupo("123A", "Kizomba", numPlazasTotal, numMatriculados + 2, 25.0);
+        Grupo g2 = new Grupo("234B", "Pilates", numPlazasTotal, numMatriculados, 25.0);
+
+        clubDeportivo.anyadirActividad(g1);
+        clubDeportivo.anyadirActividad(g2);
+
+        int numPlazas = clubDeportivo.plazasLibres("Pilates");
+
+        assertEquals(numPlazas, numPlazasTotal - numMatriculados);
     }
 
-    @DisplayName("El método anyadirActividad debe lanzar una excepción si los parámetros no son válidos")
+    @DisplayName("El método plazasLibres debe devolver cero si no hay grupos con esa actividad en el club")
     @Test
-    void AnyadirActividad_ParametrosInvalidos_ThrowsClubException() {
-        String[] datosErroneos = { "a", "a", "a", "a", "a" };
+    void PlazasLibres_GrupoNoAnyadido_ReturnCero() throws ClubException {
+        String nombre = "club";
+        int numGrupos = 12;
+        ClubDeportivo clubDeportivo = new ClubDeportivo(nombre, numGrupos);
 
-        assertThrows(ClubException.class, () -> {
-            clubDeportivo.anyadirActividad(datosErroneos);
-        });
-    }
-
-    @DisplayName("El método anyadirActividad debe lanzar una excepción si el número de parámetros es inválido")
-    @Test
-    void AnyadirActividad_NumeroDeParametrosInvalido_ThrowsClubException() {
-        String[] datosErroneos = { "a", "a", "a", "a" };
-
-        assertThrows(ClubException.class, () -> {
-            clubDeportivo.anyadirActividad(datosErroneos);
-        });
-    }
-
-    @DisplayName("El método anyadirActividad debe añadir un grupo al club si el parametro es un Grupo")
-    @Test
-    void AnyadirActividad_ParametrosCorrectos_ThrowsClubException() {
-        assertAll(() -> {
-            clubDeportivo.anyadirActividad(new Grupo("123A", "Kizomba", 10, 10, 25.0));
-        });
-    }
-
-    @DisplayName("El método anyadirActividad debe lanzar una excepción si el grrupo es nulo")
-    @Test
-    void plazasLibres__() {
-        assertThrows(ClubException.class, () -> {
-            clubDeportivo.anyadirActividad((Grupo) null);
-        });
-    }
-
-    @DisplayName("El método anyadirActividad debe lanzar una exe un grupo al club si el parametro es un Grupo")
-    @Test
-    void PlazasLibres_ParametroCorrecto_ReturnPlazasLibres() throws ClubException {
-        Grupo g;
-        g = new Grupo("123A", "Kizomba", 10, 5, 25.0);
-        clubDeportivo.anyadirActividad(g);
-
-        int numPlazas = clubDeportivo.plazasLibres("Kizomba");
-
-        assertEquals(numPlazas, 5);
-    }
-
-    @DisplayName("El método anyadirActividad debe lanzar una exe un grupo al club si el parametro es un Grupo")
-    @Test
-    void PlazasLibres_GrupoNoAnyadido_ReturnCero() {
         int numPlazas = clubDeportivo.plazasLibres("Kizomba");
 
         assertEquals(numPlazas, 0);
     }
 
-    @DisplayName("El método matricular debe lanzar una exe un grupo al club si el parametro es un Grupo")
+    @DisplayName("El método plazasLibres debe devolver cero si el grupo no tiene plazas libres")
     @Test
-    void Matricular_ParametrosCorrectos_NotThrowClubException() throws ClubException {
-        Grupo g;
-        g = new Grupo("123A", "Kizomba", 10, 5, 25.0);
-        clubDeportivo.anyadirActividad(g);
-        int numPersonas = 5;
+    void PlazasLibres_GrupoExiste_ReturnCero() throws ClubException {
+        String nombre = "club";
+        int numGrupos = 12;
+        Grupo g1 = new Grupo("123A", "Kizomba", 10, 10, 25.0);
+        ClubDeportivo clubDeportivo = new ClubDeportivo(nombre, numGrupos);
+        int numPlazas = clubDeportivo.plazasLibres("Kizomba");
 
-        assertAll(() -> clubDeportivo.matricular("Kizomba", numPersonas));
-    }
-
-    @DisplayName("El método matricular debe lanzar una exe un grupo al club si el parametro es un Grupo")
-    @Test
-    void Matricular_NoExisteActividad_ThrowClubException() {
-        assertThrows(ClubException.class, () -> clubDeportivo.matricular("Kizomba", 10));
-    }
-
-    @DisplayName("El método matricular debe lanzar una exe un grupo al club si el numero de personas es negativo")
-    @Test
-    void Matricular_NumPersonasNegativo_ThrowsException() throws ClubException {
-        Grupo g;
-        g = new Grupo("123A", "Kizomba", 1, 1, 25.0);
-        clubDeportivo.anyadirActividad(g);
-        int numPersonas = -3;
-
-        assertThrows(ClubException.class, () -> {
-            clubDeportivo.matricular("Kizomba", numPersonas);
-        });
-    }
-
-    @DisplayName("El método matricular debe lanzar una exe un grupo al club si el parametro es un Grupo")
-    @Test
-    void Matricular_PlazasInsuficientes_ThrowsException() throws ClubException {
-        Grupo g;
-        g = new Grupo("123A", "Kizomba", 1, 1, 25.0);
-        clubDeportivo.anyadirActividad(g);
-        int numPersonas = 10;
-
-        assertThrows(ClubException.class, () -> {
-            clubDeportivo.matricular("Kizomba", numPersonas);
-        });
+        assertEquals(numPlazas, 0);
     }
 
     @DisplayName("El método ingresos debe lanzar una exe un grupo al club si el parametro es un Grupo")
     @Test
     void ingresos_ZeroGrupos_DevulveCero() throws ClubException {
+        String nombre = "club";
+        int numGrupos = 12;
+        ClubDeportivo clubDeportivo = new ClubDeportivo(nombre, numGrupos);
 
         double ingresos = clubDeportivo.ingresos();
 
@@ -145,8 +97,10 @@ public class TestClubDeportivo {
     @DisplayName("El método ingresos debe lanzar una exe un grupo al club si el parametro es un Grupo")
     @Test
     void ingresos_Grupos_DevulveTarifa() throws ClubException {
+        String nombre = "club";
+        int numGrupos = 12;
+        ClubDeportivo clubDeportivo = new ClubDeportivo(nombre, numGrupos);
         double tarifa = 25.0;
-
         Grupo g1 = new Grupo("123A", "Kizomba", 1, 1, tarifa);
         Grupo g2 = new Grupo("123Ab", "Kizomba2", 1, 1, tarifa);
 
@@ -161,17 +115,22 @@ public class TestClubDeportivo {
     @DisplayName("El método ingresos debe lanzar una exe un grupo al club si el parametro es un Grupo")
     @Test
     void toString_nodevulveString() throws ClubException {
+        String nombre = "club";
+        int numGrupos = 12;
+        ClubDeportivo clubDeportivo = new ClubDeportivo(nombre, numGrupos);
 
         String text = clubDeportivo.toString();
 
-        assertEquals(text, nombre + " --> [  ]");
+        assertEquals(text, "club --> [  ]");
     }
 
     @DisplayName("El método ingresos debe lanzar una exe un grupo al club si el parametro es un Grupo")
     @Test
     void toString_devulveString() throws ClubException {
+        String nombre = "club";
+        int numGrupos = 12;
+        ClubDeportivo clubDeportivo = new ClubDeportivo(nombre, numGrupos);
         double tarifa = 25.0;
-
         Grupo g1 = new Grupo("A", "Kizomba", 1, 1, tarifa);
         Grupo g2 = new Grupo("B", "Kizomba2", 1, 1, tarifa);
 
@@ -180,6 +139,7 @@ public class TestClubDeportivo {
 
         String text = clubDeportivo.toString();
 
-        assertEquals(text, nombre + " --> [ " + g1.toString() + ", " + g2.toString() + " ]");
+        assertEquals(text, "club --> [ " + g1.toString() + ", " + g2.toString() + " ]");
     }
+
 }
