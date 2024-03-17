@@ -16,7 +16,7 @@ public class TestAnyadirActividad {
         clubDeportivo = new ClubDeportivo(nombre, numGrupos);
     }
 
-    @DisplayName("El metodo anyadirActividad anyade una actividad si los parámetros son correctos")
+    @DisplayName("El metodo anyadirActividad añade una actividad si los parámetros son correctos")
     @Test
     void AnyadirActividad_ParametrosCorrectos_AnyadeActividad() throws ClubException {
         String[] datos = { "123A", "Kizomba", "10", "10", "25.0" };

@@ -24,7 +24,7 @@ public class TestGrupo {
         g1 = new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
     }
 
-    @DisplayName("El metodo plazas libres debe devolver las plazas totales menos el número de matriculados")
+    @DisplayName("El metodo plazasLibres debe devolver las plazas totales menos el número de matriculados")
     @Test
     public void PlazasLibres__ReturnPlazasLibres() {
         int plazasLibres = nplazas - nmatriculados;
@@ -112,7 +112,7 @@ public class TestGrupo {
         assertTrue(g1.equals(g2));
     }
 
-    @DisplayName("El metodo equals debe devolver un boolean true cuando las instancias son iguales")
+    @DisplayName("El metodo equals debe devolver un boolean false cuando los codigos de los grupos son distintos")
     @Test
     public void Equals_CodigoEsDistinto_ReturnFalse() throws ClubException {
         Grupo g2 = new Grupo("123A", actividad, nplazas, nmatriculados, tarifa);
@@ -120,7 +120,7 @@ public class TestGrupo {
         assertFalse(g1.equals(g2));
     }
 
-    @DisplayName("El metodo equals debe devolver un boolean true cuando las instancias son iguales")
+    @DisplayName("El metodo equals debe devolver un boolean false cuando las actividades de los grupos son distintas")
     @Test
     public void Equals_ActividadEsDistinta_ReturnFalse() throws ClubException {
         Grupo g2 = new Grupo(codigo, "actividad", nplazas, nmatriculados, tarifa);
@@ -128,7 +128,7 @@ public class TestGrupo {
         assertFalse(g1.equals(g2));
     }
 
-    @DisplayName("El metodo equals debe devolver un boolean true cuando las instancias son iguales")
+    @DisplayName("El metodo equals debe devolver un boolean false cuando las instancias no son del mismo tipo")
     @Test
     public void Equals_ParametroEsDistintoTipo_ReturnFalse() throws ClubException {
         String g2 = "Pilates";
@@ -136,7 +136,7 @@ public class TestGrupo {
         assertFalse(g1.equals(g2));
     }
 
-    @DisplayName("El metodo equals debe devolver dos enteros iguales si las instancias son iguales")
+    @DisplayName("El metodo hashCode debe devolver dos enteros iguales si las instancias son iguales")
     @Test
     public void HashCode__ReturnValorCorrecto() throws ClubException {
 

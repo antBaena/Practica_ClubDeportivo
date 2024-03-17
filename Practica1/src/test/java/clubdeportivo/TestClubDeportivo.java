@@ -6,7 +6,7 @@ import org.junit.jupiter.api.*;
 
 public class TestClubDeportivo {
 
-    @DisplayName("El segundo constructor de la clase Club Deportivo debe lanzar una excepción si los parámetros son negativos")
+    @DisplayName("El constructor de la clase Club Deportivo debe crear un club deportivo con el nombre y número de plazas proporcionado")
     @Test
     void ClubDeportivo_NombreYnumPlazas_CreateObject() throws ClubException {
         String nombre = "club";
@@ -18,7 +18,7 @@ public class TestClubDeportivo {
         assertEquals(clubDeportivo.toString(), expected);
     }
 
-    @DisplayName("El primer constructor de la clase Club Deportivo debe lanzar una excepción si los parámetros son negativos")
+    @DisplayName("El constructor de la clase Club Deportivo debe crear un club deportivo con el nombre proporcionado")
     @Test
     void ClubDeportivo_Nombre_CreateObject() throws ClubException {
         String nombre = "club";
@@ -38,7 +38,7 @@ public class TestClubDeportivo {
         });
     }
 
-    @DisplayName("El método plazasLibres debe devolver el numero de plazas libres del grupo de la actividad seleccionada si el parametro es un Grupo")
+    @DisplayName("El método plazasLibres debe devolver el numero de plazas libres del grupo de la actividad proporcionada")
     @Test
     void PlazasLibres_GrupoExiste_ReturnPlazasLibres() throws ClubException {
         String nombre = "club";
@@ -82,7 +82,7 @@ public class TestClubDeportivo {
         assertEquals(numPlazas, 0);
     }
 
-    @DisplayName("El método ingresos debe lanzar una exe un grupo al club si el parametro es un Grupo")
+    @DisplayName("El método ingresos debe devolver cero si no hay grupos dentro del club deportivo")
     @Test
     void ingresos_ZeroGrupos_DevulveCero() throws ClubException {
         String nombre = "club";
@@ -94,7 +94,7 @@ public class TestClubDeportivo {
         assertEquals(ingresos, 0);
     }
 
-    @DisplayName("El método ingresos debe lanzar una exe un grupo al club si el parametro es un Grupo")
+    @DisplayName("El método ingresos debe devolver los ingresos totales del club deportivo")
     @Test
     void ingresos_Grupos_DevulveTarifa() throws ClubException {
         String nombre = "club";
@@ -112,7 +112,7 @@ public class TestClubDeportivo {
         assertEquals(ingresos, (tarifa * 2));
     }
 
-    @DisplayName("El método ingresos debe lanzar una exe un grupo al club si el parametro es un Grupo")
+    @DisplayName("El método toString debe devolver un String solo con el nombre del club si el club deportivo no tiene grupos")
     @Test
     void toString_nodevulveString() throws ClubException {
         String nombre = "club";
@@ -120,11 +120,12 @@ public class TestClubDeportivo {
         ClubDeportivo clubDeportivo = new ClubDeportivo(nombre, numGrupos);
 
         String text = clubDeportivo.toString();
+        String expected = nombre + " --> [  ]";
 
-        assertEquals(text, "club --> [  ]");
+        assertEquals(text, expected);
     }
 
-    @DisplayName("El método ingresos debe lanzar una exe un grupo al club si el parametro es un Grupo")
+    @DisplayName("El método toString debe devolver un String con el nombre del club deportivo y sus grupos")
     @Test
     void toString_devulveString() throws ClubException {
         String nombre = "club";

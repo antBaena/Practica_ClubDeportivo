@@ -18,7 +18,7 @@ public class TestClubDeportivoAltoRendimiento {
         }
     }
 
-    @DisplayName("El constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción el parametro 'maximo' negativos")
+    @DisplayName("El constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'maximo' es negativo")
     @Test
     void ClubDeportivo_ParamMaximoNegativo_ThrowsClubException() {
         assertThrows(ClubException.class, () -> {
@@ -26,7 +26,7 @@ public class TestClubDeportivoAltoRendimiento {
         });
     }
 
-    @DisplayName("El constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción el parametro 'maximo' negativos")
+    @DisplayName("El constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'incremento' es negativo")
     @Test
     void ClubDeportivo_ParamIncrementoNegativo_ThrowsClubException() {
         assertThrows(ClubException.class, () -> {

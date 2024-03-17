@@ -17,64 +17,7 @@ public class TestClubDeportivoMatricular {
         clubDeportivo = new ClubDeportivo(nombre, numGrupos);
     }
 
-    @DisplayName("El método matricular debe lanzar una exe un grupo al club si el parametro es un Grupo")
-    @Test
-    void Matricular_ParametrosCorrectos_NotThrowClubException() throws ClubException {
-        int numPersonas = 5;
-        Grupo g;
-        g = new Grupo("123A", "Kizomba", 10, 5, 25.0);
-        clubDeportivo.anyadirActividad(g);
-
-        assertAll(() -> clubDeportivo.matricular("Kizomba", numPersonas));
-    }
-
-    @DisplayName("El método matricular debe lanzar una exe un grupo al club si el parametro es un Grupo")
-    @Test
-    void Matricular_NoExisteActividad_ThrowClubException() throws ClubException {
-        assertThrows(ClubException.class, () -> clubDeportivo.matricular("Kizomba", 10));
-    }
-
-    @DisplayName("El método matricular debe lanzar una exe un grupo al club si el numero de personas es negativo")
-    @Test
-    void Matricular_NumPersonasNegativo_ThrowsException() throws ClubException {
-        int numPersonas = -3;
-        Grupo g;
-        g = new Grupo("123A", "Kizomba", 1, 1, 25.0);
-        clubDeportivo.anyadirActividad(g);
-
-        assertThrows(ClubException.class, () -> {
-            clubDeportivo.matricular("Kizomba", numPersonas);
-        });
-    }
-
-    @DisplayName("El método matricular debe lanzar una exe un grupo al club si el parametro es un Grupo")
-    @Test
-    void Matricular_PlazasInsuficientes_ThrowsException() throws ClubException {
-        int numPersonas = 10;
-        Grupo g;
-        g = new Grupo("123A", "Kizomba", 1, 1, 25.0);
-        clubDeportivo.anyadirActividad(g);
-
-        assertThrows(ClubException.class, () -> {
-            clubDeportivo.matricular("Kizomba", numPersonas);
-        });
-    }
-
-    // TODO test donde npersonas = 0
-    @DisplayName("El método matricular debe lanzar una exe un grupo al club si el numero de personas es negativo")
-    @Test
-    void Matricular_NumPersonasCero_ThrowsException() throws ClubException {
-        int numPersonas = 30;
-        Grupo g;
-        g = new Grupo("123A", "Kizomba", 1, 1, 25.0);
-        clubDeportivo.anyadirActividad(g);
-
-        assertThrows(ClubException.class, () -> {
-            clubDeportivo.matricular("Kizomba", numPersonas);
-        });
-    }
-
-    @DisplayName("El método matricular debe lanzar una exe un grupo al club si el parametro es un Grupo")
+    @DisplayName("El método matricular debe matricular correctamente al número de personas solicitado")
     @Test
     void Matricular_NumPersonasSobraSitio_MatriculaCorrectamente() throws ClubException {
         Grupo g;
@@ -93,7 +36,52 @@ public class TestClubDeportivoMatricular {
         assertEquals(clubDeportivo.toString(), expected);
     }
 
-    @DisplayName("El método matricular debe lanzar una exe un grupo al club si el parametro es un Grupo")
+    @DisplayName("El método matricular debe lanzar una excepción cuando la actividad no existe")
+    @Test
+    void Matricular_NoExisteActividad_ThrowClubException() throws ClubException {
+        assertThrows(ClubException.class, () -> clubDeportivo.matricular("Kizomba", 10));
+    }
+
+    @DisplayName("El método matricular debe lanzar una excepción cuando el numero de personas es negativo")
+    @Test
+    void Matricular_NumPersonasNegativo_ThrowsException() throws ClubException {
+        int numPersonas = -3;
+        Grupo g;
+        g = new Grupo("123A", "Kizomba", 1, 1, 25.0);
+        clubDeportivo.anyadirActividad(g);
+
+        assertThrows(ClubException.class, () -> {
+            clubDeportivo.matricular("Kizomba", numPersonas);
+        });
+    }
+
+    @DisplayName("El método matricular debe lanzar una excepción si no hay suficientes plazas en la actividad solicitada")
+    @Test
+    void Matricular_PlazasInsuficientes_ThrowsException() throws ClubException {
+        int numPersonas = 10;
+        Grupo g;
+        g = new Grupo("123A", "Kizomba", 1, 1, 25.0);
+        clubDeportivo.anyadirActividad(g);
+
+        assertThrows(ClubException.class, () -> {
+            clubDeportivo.matricular("Kizomba", numPersonas);
+        });
+    }
+
+    @DisplayName("El método matricular debe lanzar una excepción si el numero de personas a matricular es cero")
+    @Test
+    void Matricular_NumPersonasCero_ThrowsException() throws ClubException {
+        int numPersonas = 0;
+        Grupo g;
+        g = new Grupo("123A", "Kizomba", 10, 1, 25.0);
+        clubDeportivo.anyadirActividad(g);
+
+        assertThrows(ClubException.class, () -> {
+            clubDeportivo.matricular("Kizomba", numPersonas);
+        });
+    }
+
+    @DisplayName("El método matricular debe matricular al número de personas dado en varios grupos de la misma actividad")
     @Test
     void Matricular_NumPersonasFraccionado_MatriculaCorrectamente() throws ClubException {
         Grupo g;
@@ -117,7 +105,8 @@ public class TestClubDeportivoMatricular {
         assertEquals(clubDeportivo.toString(), expected);
     }
 
-    @DisplayName("El método matricular debe lanzar una exe un grupo al club si el parametro es un Grupo")
+    // TODO este test lo fusionaría con el test de ver si matricula correctamente
+    @DisplayName("El método matricular debe matricular correctamente en la actividad dada entre varias actividades")
     @Test
     void Matricular_a_MatriculaCorrectamente() throws ClubException {
         Grupo g;
@@ -142,8 +131,7 @@ public class TestClubDeportivoMatricular {
         assertEquals(clubDeportivo.toString(), expected);
     }
 
-    // TODO varias actividades, minimo una llena
-    @DisplayName("El método anyadirActividad debe lanzar una excepción si el grupo es nulo")
+    @DisplayName("El método matricular debe matricular al número de personas proporcionado, teniendo varios grupos de una misma actividad y donde alguno está lleno")
     @Test
     void Matricular_VariosGruposConAlgunoLleno_MatriculaCorrectamente() throws ClubException {
         Grupo g1;
