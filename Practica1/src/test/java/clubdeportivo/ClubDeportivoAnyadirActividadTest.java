@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.*;
 
-public class TestAnyadirActividad {
+public class ClubDeportivoAnyadirActividadTest {
     private ClubDeportivo clubDeportivo;
     private String nombre;
     private int numGrupos;

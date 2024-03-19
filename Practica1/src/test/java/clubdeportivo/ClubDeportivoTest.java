@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.*;
 
-public class TestClubDeportivo {
+public class ClubDeportivoTest {
 
     @DisplayName("El constructor de la clase Club Deportivo debe crear un club deportivo con el nombre y número de plazas proporcionado")
     @Test

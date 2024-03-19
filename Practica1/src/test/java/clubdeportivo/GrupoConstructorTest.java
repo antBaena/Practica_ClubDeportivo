@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class TestConstructorGrupo {
+public class GrupoConstructorTest {
 
     @DisplayName("El constructor de Grupo debe lanzar una excepción si el numero de matriculados es mayor al de plazas")
     @Test

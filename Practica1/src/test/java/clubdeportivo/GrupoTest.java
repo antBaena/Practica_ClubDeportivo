@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.*;
 
-public class TestGrupo {
+public class GrupoTest {
 
     private Grupo g1;
     private String codigo;
