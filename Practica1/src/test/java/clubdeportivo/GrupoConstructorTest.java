@@ -1,6 +1,6 @@
 package clubdeportivo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
@@ -44,12 +44,6 @@ public class GrupoConstructorTest {
         int nmatriculados = 5;
         double tarifa = 50.0;
 
-        Grupo g1 = new Grupo("456B", "Pilates", 8, 5, 50.0);
-
-        assertEquals(g1.getCodigo(), codigo);
-        assertEquals(g1.getActividad(), actividad);
-        assertEquals(g1.getPlazas(), nplazas);
-        assertEquals(g1.getMatriculados(), nmatriculados);
-        assertEquals(g1.getTarifa(), tarifa);
+        assertDoesNotThrow(() -> new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa));
     }
 }

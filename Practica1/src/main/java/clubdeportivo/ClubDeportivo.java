@@ -87,11 +87,15 @@ public class ClubDeportivo {
 		while (i < ngrupos && npersonas > 0) {
 			if (actividad.equals(grupos[i].getActividad())) {
 				int plazasGrupo = grupos[i].plazasLibres();
-				if (npersonas >= plazasGrupo) {
-					grupos[i].matricular(plazasGrupo);
-					npersonas -= plazasGrupo;
-				} else {
-					grupos[i].matricular(npersonas);
+				if (plazasGrupo > 0) { // Error encontrado: si no hay plazas libres, no se puede matricul
+					if (npersonas >= plazasGrupo) {
+						grupos[i].matricular(plazasGrupo);
+						npersonas -= plazasGrupo;
+					} else {
+						grupos[i].matricular(npersonas);
+						npersonas = 0;
+						// Error npersonas =0 creo
+					}
 				}
 			}
 			i++;
