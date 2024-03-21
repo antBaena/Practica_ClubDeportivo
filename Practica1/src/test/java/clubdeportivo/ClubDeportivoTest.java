@@ -114,13 +114,14 @@ public class ClubDeportivoTest {
         clubDeportivo.anyadirActividad(g2);
 
         double ingresos = clubDeportivo.ingresos();
+        double expected = tarifa * 2;
 
-        assertEquals(ingresos, (tarifa * 2));
+        assertEquals(ingresos, expected);
     }
 
     @DisplayName("El método toString debe devolver un String solo con el nombre del club si el club deportivo no tiene grupos")
     @Test
-    void toString_nodevulveString() throws ClubException {
+    void toString_DevulveStringVacio() throws ClubException {
         String nombre = "club";
         int numGrupos = 12;
         ClubDeportivo clubDeportivo = new ClubDeportivo(nombre, numGrupos);
@@ -133,7 +134,7 @@ public class ClubDeportivoTest {
 
     @DisplayName("El método toString debe devolver un String con el nombre del club deportivo y sus grupos")
     @Test
-    void toString_devulveString() throws ClubException {
+    void toString_DevulveStringGrupos() throws ClubException {
         String nombre = "club";
         int numGrupos = 12;
         ClubDeportivo clubDeportivo = new ClubDeportivo(nombre, numGrupos);

@@ -35,7 +35,7 @@ public class ClubDeportivoAnyadirActividadTest {
 
     @DisplayName("El método anyadirActividad debe añadir un grupo al club si el parametro es un Grupo")
     @Test
-    void AnyadirActividad_ParametrosCorrectos_ThrowsClubException() throws ClubException {
+    void AnyadirActividad_ParametrosCorrectos_AnyadeGrupo() throws ClubException {
         String codigo = "456B";
         String actividad = "Pilates";
         int numGrupos = 8;
@@ -103,19 +103,18 @@ public class ClubDeportivoAnyadirActividadTest {
     @DisplayName("El método anyadirActividad debe lanzar una excepción si el número de grupos es mayor al máximo permitido")
     @Test
     void AnyadirActividad_MasGruposDeLosDisponibles_ThrowsClubException() throws ClubException {
-        Grupo[] grupos = new Grupo[numGrupos + 1];
+        String nombre = "club";
+        int numGrupos = 1;
+        ClubDeportivo clubDeportivoUnaPlaza = new ClubDeportivo(nombre, numGrupos);
+
         int numPlazas = 10;
         int numMatriculados = 5;
         double tarifa = 25.0;
 
-        for (int i = 0; i < numGrupos + 1; i++) {
-            grupos[i] = new Grupo("123" + i, "actividad" + i, numPlazas, numMatriculados, tarifa);
-        }
+        Grupo grupo1 = new Grupo("123A", "actividad", numPlazas, numMatriculados, tarifa);
+        Grupo grupo2 = new Grupo("123B", "actividad", numPlazas, numMatriculados, tarifa);
+        clubDeportivoUnaPlaza.anyadirActividad(grupo1);
 
-        for (int i = 0; i < numGrupos; i++) {
-            clubDeportivo.anyadirActividad(grupos[i]);
-        }
-
-        assertThrows(ClubException.class, () -> clubDeportivo.anyadirActividad(grupos[numGrupos]));
+        assertThrows(ClubException.class, () -> clubDeportivoUnaPlaza.anyadirActividad(grupo2));
     }
 }

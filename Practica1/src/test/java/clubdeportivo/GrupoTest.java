@@ -76,8 +76,9 @@ public class GrupoTest {
         int numMatriculados = g1.getMatriculados();
 
         g1.matricular(numPersonas);
+        int expected = numMatriculados + numPersonas;
 
-        assertEquals(g1.getMatriculados(), numMatriculados + numPersonas);
+        assertEquals(g1.getMatriculados(), expected);
     }
 
     @DisplayName("El metodo matricular debe actualizar el numero de plazas libres si los parametros son correctos")
@@ -88,8 +89,9 @@ public class GrupoTest {
         int plazasLibres = g1.plazasLibres();
 
         g1.matricular(numPersonas);
+        int expected = plazasLibres - numPersonas;
 
-        assertEquals(g1.plazasLibres(), plazasLibres - numPersonas);
+        assertEquals(g1.plazasLibres(), expected);
     }
 
     @DisplayName("El metodo matricular debe lanzar una excepcion si el numero de personas es negativo")
@@ -112,7 +114,7 @@ public class GrupoTest {
 
     @DisplayName("El metodo toString debe devolver un string con todos los datos del grupo")
     @Test
-    public void ToString__ReturnValorCorrecto() {
+    public void ToString_ReturnValorCorrecto() {
         String expected = "(" + codigo + " - " + actividad + " - " + tarifa + " euros " + "- P:" + nplazas + " - M:"
                 + nmatriculados + ")";
 
@@ -153,7 +155,7 @@ public class GrupoTest {
 
     @DisplayName("El metodo hashCode debe devolver dos enteros iguales si las instancias son iguales")
     @Test
-    public void HashCode__ReturnValorCorrecto() throws ClubException {
+    public void HashCode_ReturnValorCorrecto() throws ClubException {
 
         Grupo g2 = new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
 

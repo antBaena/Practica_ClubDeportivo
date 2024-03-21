@@ -30,31 +30,31 @@ public class GrupoGettersTest {
 
     @DisplayName("El método getCodigo debe devolver el código del grupo")
     @Test
-    public void getCodigo__DevuelveCodigoCorrectamente() {
+    public void getCodigo_DevuelveCodigoCorrectamente() {
         assertEquals(grupo.getCodigo(), codigo);
     }
 
     @DisplayName("El método getActividad debe devolver la actividad del grupo")
     @Test
-    public void getActividad__DevuelveActividadCorrectamente() {
+    public void getActividad_DevuelveActividadCorrectamente() {
         assertEquals(grupo.getActividad(), actividad);
     }
 
     @DisplayName("El método getPlazas debe devolver las plazas del grupo")
     @Test
-    public void getPlazas__DevuelvePlazasCorrectamente() {
+    public void getPlazas_DevuelvePlazasCorrectamente() {
         assertEquals(grupo.getPlazas(), plazas);
     }
 
     @DisplayName("El método getMatriculados debe devolver los matriculados del grupo")
     @Test
-    public void getMatriculados__DevuelveMatriculadosCorrectamente() {
+    public void getMatriculados_DevuelveMatriculadosCorrectamente() {
         assertEquals(grupo.getMatriculados(), matriculados);
     }
 
     @DisplayName("El método getTarifa debe devolver la tarifa del grupo")
     @Test
-    public void getTarifa__DevuelveTarifaCorrectamente() {
+    public void getTarifa_DevuelveTarifaCorrectamente() {
         assertEquals(grupo.getTarifa(), tarifa);
     }
 

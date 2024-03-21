@@ -24,43 +24,91 @@ public class ClubDeportivoAltoRendimientoTest {
         clubDeportivoAltoRendimiento = new ClubDeportivoAltoRendimiento(nombre, maximo, incremento);
     }
 
+    @DisplayName("El primer constructor de la clase ClubDeportivoAltoRendimiento debe inicializar correctamente los atributos")
+    @Test
+    void ClubDeportivoAltoRendimientoC1_ParametrosValidos() throws ClubException {
+
+        ClubDeportivoAltoRendimiento club = new ClubDeportivoAltoRendimiento(nombre, maximo, incremento);
+
+        String expected = nombre + " --> [  ]";
+
+        assertEquals(club.toString(), expected);
+
+    }
+
+    @DisplayName("El segundo constructor de la clase ClubDeportivoAltoRendimiento debe inicializar correctamente los atributos")
+    @Test
+    void ClubDeportivoAltoRendimientoC2_ParametrosValidos() throws ClubException {
+        int tam = 1;
+
+        ClubDeportivoAltoRendimiento club = new ClubDeportivoAltoRendimiento(nombre, tam, maximo, incremento);
+
+        String expected = nombre + " --> [  ]";
+
+        assertEquals(club.toString(), expected);
+
+    }
+
     @DisplayName("El primer constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'maximo' es negativo")
     @Test
     void ClubDeportivoAltoRendimientoC1_ParamMaximoNegativo_ThrowsClubException() {
+        String nombre = "test";
+        int maximo = -1;
+        int incremento = 1;
+
         assertThrows(ClubException.class, () -> {
-            new ClubDeportivoAltoRendimiento("test", -1, 1);
+            new ClubDeportivoAltoRendimiento(nombre, maximo, incremento);
         });
     }
 
     @DisplayName("El primer constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'incremento' es negativo")
     @Test
     void ClubDeportivoAltoRendimientoC1_ParamIncrementoNegativo_ThrowsClubException() {
+        String nombre = "test";
+        int maximo = 1;
+        int incremento = -1;
+
         assertThrows(ClubException.class, () -> {
-            new ClubDeportivoAltoRendimiento("test", 1, -1);
+            new ClubDeportivoAltoRendimiento(nombre, maximo, incremento);
         });
     }
 
     @DisplayName("El segundo constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'maximo' es negativo")
     @Test
     void ClubDeportivoAltoRendimientoC2_ParamMaximoNegativo_ThrowsClubException() {
+        String nombre = "test";
+        int tam = 1;
+        int maximo = -1;
+        int incremento = 1;
+
         assertThrows(ClubException.class, () -> {
-            new ClubDeportivoAltoRendimiento("test", 1, -1, 1);
+            new ClubDeportivoAltoRendimiento(nombre, tam, maximo, incremento);
         });
     }
 
     @DisplayName("El segundo constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'incremento' es negativo")
     @Test
     void ClubDeportivoAltoRendimientoC2_ParamIncrementoNegativo_ThrowsClubException() {
+        String nombre = "test";
+        int tam = 1;
+        int maximo = 1;
+        int incremento = -1;
+
         assertThrows(ClubException.class, () -> {
-            new ClubDeportivoAltoRendimiento("test", 1, 1, -1);
+            new ClubDeportivoAltoRendimiento(nombre, tam, maximo, incremento);
         });
     }
 
     @DisplayName("El segundo constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'tamaño' es menor o igual a cero")
     @Test
     void ClubDeportivoAltoRendimientoC2_ParamTamanyoInvalido_ThrowsClubException() {
+        String nombre = "test";
+        int tam = 0;
+        int maximo = 1;
+        int incremento = 1;
+
         assertThrows(ClubException.class, () -> {
-            new ClubDeportivoAltoRendimiento("test", 0, 1, 1);
+            new ClubDeportivoAltoRendimiento(nombre, tam, maximo, incremento);
         });
     }
 
@@ -81,6 +129,7 @@ public class ClubDeportivoAltoRendimientoTest {
 
         double ingresos = clubDeportivoAltoRendimiento.ingresos();
         double expected = ((tarifa * matriculados) + ((tarifa * matriculados) * (incremento / 100)));
+
         assertEquals(ingresos, expected);
     }
 

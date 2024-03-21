@@ -29,7 +29,7 @@ public class ClubDeportivoMatricularTest {
         String codigo = "123A";
         String nombreAct = "Kizomba";
         int numMatriculas = 10;
-        int numPlazas = 10;
+        int numPlazas = numMatriculas;
         double tarifa = 25.0;
         g = new Grupo("123A", nombreAct, numPlazas, 0, tarifa);
         clubDeportivo.anyadirActividad(g);
@@ -44,12 +44,15 @@ public class ClubDeportivoMatricularTest {
     @DisplayName("El método matricular debe lanzar una excepción cuando la actividad no existe")
     @Test
     void Matricular_NoExisteActividad_ThrowClubException() throws ClubException {
-        assertThrows(ClubException.class, () -> clubDeportivo.matricular("Kizomba", 10));
+
+        String nombreAct = "Kizomba";
+
+        assertThrows(ClubException.class, () -> clubDeportivo.matricular(nombreAct, 10));
     }
 
     @DisplayName("El método matricular debe lanzar una excepción cuando el numero de personas es negativo")
     @Test
-    void Matricular_NumPersonasNegativo_ThrowsException() throws ClubException {
+    void Matricular_NumPersonasNegativo_ThrowClubException() throws ClubException {
         int numPersonas = -3;
         Grupo g;
         g = new Grupo("123A", "Kizomba", 1, 1, 25.0);
@@ -62,27 +65,29 @@ public class ClubDeportivoMatricularTest {
 
     @DisplayName("El método matricular debe lanzar una excepción si no hay suficientes plazas en la actividad solicitada")
     @Test
-    void Matricular_PlazasInsuficientes_ThrowsException() throws ClubException {
+    void Matricular_PlazasInsuficientes_ThrowClubException() throws ClubException {
+        String nombreAct = "Kizomba";
         int numPersonas = 10;
         Grupo g;
-        g = new Grupo("123A", "Kizomba", 1, 1, 25.0);
+        g = new Grupo("123A", nombreAct, 1, 1, 25.0);
         clubDeportivo.anyadirActividad(g);
 
         assertThrows(ClubException.class, () -> {
-            clubDeportivo.matricular("Kizomba", numPersonas);
+            clubDeportivo.matricular(nombreAct, numPersonas);
         });
     }
 
     @DisplayName("El método matricular debe lanzar una excepción si el numero de personas a matricular es cero")
     @Test
-    void Matricular_NumPersonasCero_ThrowsException() throws ClubException {
+    void Matricular_NumPersonasCero_ThrowClubException() throws ClubException {
+        String nombreAct = "Kizomba";
         int numPersonas = 0;
         Grupo g;
-        g = new Grupo("123A", "Kizomba", 10, 1, 25.0);
+        g = new Grupo("123A", nombreAct, 10, 1, 25.0);
         clubDeportivo.anyadirActividad(g);
 
         assertThrows(ClubException.class, () -> {
-            clubDeportivo.matricular("Kizomba", numPersonas);
+            clubDeportivo.matricular(nombreAct, numPersonas);
         });
     }
 

@@ -29,6 +29,7 @@ public class ClubDeportivoAltoRendimientoAnyadirActividadTest {
     @Test
     void AnyadirActividad_ParametrosCorrectos_AnyadeActividad() throws ClubException {
         String[] datos = { "123A", "Kizomba", "10", "10", "25.0" };
+
         String expected = nombre + " --> [ (" + datos[0] + " - " + datos[1] + " - " + datos[4] + " euros " + "- P:"
                 + datos[2] + " - M:" + datos[3] + ") ]";
 
@@ -62,6 +63,7 @@ public class ClubDeportivoAltoRendimientoAnyadirActividadTest {
     public void AnyadirActividad_MasPlazasQueMaximo_ModificaLasPlazasDelGrupo() throws ClubException {
         int plazas = maximo + 1;
         String[] datos = { "123A", "Kizomba", String.valueOf(plazas), "9", "25.0" };
+
         String expected = nombre + " --> [ (" + datos[0] + " - " + datos[1] + " - " + datos[4] + " euros " + "- P:"
                 + maximo + " - M:" + datos[3] + ") ]";
 
