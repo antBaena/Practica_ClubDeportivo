@@ -1,3 +1,9 @@
+/*
+ * @author Antonio Cañete Baena
+ * 
+ * @author Antonio Blas Moral Sánchez
+ * 
+ */
 package clubdeportivo;
 
 import static org.junit.jupiter.api.Assertions.*;
