@@ -1,7 +1,6 @@
 package clubdeportivo;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.*;
 
 public class ClubDeportivoTest {
@@ -77,6 +76,7 @@ public class ClubDeportivoTest {
         int numGrupos = 12;
         Grupo g1 = new Grupo("123A", "Kizomba", 10, 10, 25.0);
         ClubDeportivo clubDeportivo = new ClubDeportivo(nombre, numGrupos);
+        clubDeportivo.anyadirActividad(g1);
         int numPlazas = clubDeportivo.plazasLibres("Kizomba");
 
         assertEquals(numPlazas, 0);

@@ -1,10 +1,7 @@
 package clubdeportivo;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
 
 public class GrupoConstructorTest {
 
@@ -35,7 +32,7 @@ public class GrupoConstructorTest {
         assertThrows(ClubException.class, () -> new Grupo("123A", "Pilates", 5, 2, -50.0));
     }
 
-    @DisplayName("El constructor de Grupo debe lanzar una excepción si la tarifa es menor o igual que 0")
+    @DisplayName("El constructor de Grupo no debe lanzar todos los parametros son correctos")
     @Test
     public void Grupo_ParametrosCorrectos_ReturnGrupo() throws ClubException {
         String codigo = "456B";

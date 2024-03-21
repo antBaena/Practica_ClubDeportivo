@@ -1,7 +1,6 @@
 package clubdeportivo;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.*;
 
 public class GrupoTest {
@@ -26,12 +25,12 @@ public class GrupoTest {
 
     @DisplayName("El metodo plazasLibres debe devolver las plazas totales menos el número de matriculados")
     @Test
-    public void PlazasLibres__ReturnPlazasLibres() {
+    public void PlazasLibres_ReturnPlazasLibres() {
         int plazasLibres = nplazas - nmatriculados;
         assertEquals(g1.plazasLibres(), plazasLibres);
     }
 
-    @DisplayName("El metodo actualizarPlazs debe actualizar el numero de plazas si el valor introducido es corecto")
+    @DisplayName("El metodo actualizarPlazas debe actualizar el numero de plazas si el valor introducido es corecto")
     @Test
     public void ActualizarPlazas_NumPlazasValido_ActualizaElNumPlazas() throws ClubException {
 
@@ -63,18 +62,28 @@ public class GrupoTest {
 
     }
 
-    @DisplayName("El metodo matricular debe actualizar el numero de matriculados y plazas libres si los parametros son correctos")
+    @DisplayName("El metodo matricular debe actualizar el numero de matriculados  si los parametros son correctos")
     @Test
     public void Matricular_NumPlazasValido_ActualizaNumMatriculados() throws ClubException {
 
         int numPersonas = 3;
-        int plazasLibres = g1.plazasLibres();
         int numMatriculados = g1.getMatriculados();
 
         g1.matricular(numPersonas);
 
-        assertEquals(g1.plazasLibres(), plazasLibres - numPersonas);
         assertEquals(g1.getMatriculados(), numMatriculados + numPersonas);
+    }
+
+    @DisplayName("El metodo matricular debe actualizar el numero de plazas libres si los parametros son correctos")
+    @Test
+    public void Matricular_NumPlazasValido_ActualizaNumPlazasLibres() throws ClubException {
+
+        int numPersonas = 3;
+        int plazasLibres = g1.plazasLibres();
+
+        g1.matricular(numPersonas);
+
+        assertEquals(g1.plazasLibres(), plazasLibres - numPersonas);
     }
 
     @DisplayName("El metodo matricular debe lanzar una excepcion si el numero de personas es negativo")
@@ -117,7 +126,7 @@ public class GrupoTest {
     public void Equals_CodigoEsDistinto_ReturnFalse() throws ClubException {
         Grupo g2 = new Grupo("123A", actividad, nplazas, nmatriculados, tarifa);
 
-        assertFalse(g1.equals(g2));
+        assertNotEquals(g1, g2);
     }
 
     @DisplayName("El metodo equals debe devolver un boolean false cuando las actividades de los grupos son distintas")
@@ -125,7 +134,7 @@ public class GrupoTest {
     public void Equals_ActividadEsDistinta_ReturnFalse() throws ClubException {
         Grupo g2 = new Grupo(codigo, "actividad", nplazas, nmatriculados, tarifa);
 
-        assertFalse(g1.equals(g2));
+        assertNotEquals(g1, g2);
     }
 
     @DisplayName("El metodo equals debe devolver un boolean false cuando las instancias no son del mismo tipo")
@@ -133,7 +142,7 @@ public class GrupoTest {
     public void Equals_ParametroEsDistintoTipo_ReturnFalse() throws ClubException {
         String g2 = "Pilates";
 
-        assertFalse(g1.equals(g2));
+        assertNotEquals(g1, g2);
     }
 
     @DisplayName("El metodo hashCode debe devolver dos enteros iguales si las instancias son iguales")

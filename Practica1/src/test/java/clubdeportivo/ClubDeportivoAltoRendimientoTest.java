@@ -1,11 +1,7 @@
 package clubdeportivo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
 
 public class ClubDeportivoAltoRendimientoTest {
     ClubDeportivoAltoRendimiento clubDeportivoAltoRendimiento;
@@ -21,7 +17,7 @@ public class ClubDeportivoAltoRendimientoTest {
         clubDeportivoAltoRendimiento = new ClubDeportivoAltoRendimiento(nombre, maximo, incremento);
     }
 
-    @DisplayName("El constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'maximo' es negativo")
+    @DisplayName("El primer constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'maximo' es negativo")
     @Test
     void ClubDeportivoAltoRendimientoC1_ParamMaximoNegativo_ThrowsClubException() {
         assertThrows(ClubException.class, () -> {
@@ -29,7 +25,7 @@ public class ClubDeportivoAltoRendimientoTest {
         });
     }
 
-    @DisplayName("El constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'incremento' es negativo")
+    @DisplayName("El primer constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'incremento' es negativo")
     @Test
     void ClubDeportivoAltoRendimientoC1_ParamIncrementoNegativo_ThrowsClubException() {
         assertThrows(ClubException.class, () -> {
@@ -37,7 +33,7 @@ public class ClubDeportivoAltoRendimientoTest {
         });
     }
 
-    @DisplayName("El constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'maximo' es negativo")
+    @DisplayName("El segundo constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'maximo' es negativo")
     @Test
     void ClubDeportivoAltoRendimientoC2_ParamMaximoNegativo_ThrowsClubException() {
         assertThrows(ClubException.class, () -> {
@@ -45,7 +41,7 @@ public class ClubDeportivoAltoRendimientoTest {
         });
     }
 
-    @DisplayName("El constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'incremento' es negativo")
+    @DisplayName("El segundo constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'incremento' es negativo")
     @Test
     void ClubDeportivoAltoRendimientoC2_ParamIncrementoNegativo_ThrowsClubException() {
         assertThrows(ClubException.class, () -> {
@@ -53,7 +49,7 @@ public class ClubDeportivoAltoRendimientoTest {
         });
     }
 
-    @DisplayName("El constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'tamaño' es menor o igual a cero")
+    @DisplayName("El segundo constructor de la clase ClubDeportivoAltoRendimiento debe lanzar una excepción si el parametro 'tamaño' es menor o igual a cero")
     @Test
     void ClubDeportivoAltoRendimientoC2_ParamTamanyoInvalido_ThrowsClubException() {
         assertThrows(ClubException.class, () -> {

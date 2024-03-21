@@ -1,7 +1,6 @@
 package clubdeportivo;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.*;
 
 public class ClubDeportivoAnyadirActividadTest {
@@ -95,7 +94,7 @@ public class ClubDeportivoAnyadirActividadTest {
         assertEquals(clubDeportivo.toString(), expected);
     }
 
-    @DisplayName("El método anyadirActividad debe lanzar una excepción si el grupo es nulo")
+    @DisplayName("El método anyadirActividad debe lanzar una excepción si el número de grupos es mayor al máximo permitido")
     @Test
     void AnyadirActividad_MasGruposDeLosDisponibles_ThrowsClubException() throws ClubException {
         Grupo[] grupos = new Grupo[numGrupos + 1];

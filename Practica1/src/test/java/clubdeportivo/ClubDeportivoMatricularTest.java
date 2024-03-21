@@ -1,7 +1,6 @@
 package clubdeportivo;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.*;
 
 public class ClubDeportivoMatricularTest {
@@ -121,93 +120,4 @@ public class ClubDeportivoMatricularTest {
         assertEquals(clubDeportivo.toString(), expected);
     }
 
-    // TODO este test lo fusionaría con el test de ver si matricula correctamente
-    // @DisplayName("El método matricular debe matricular correctamente en la
-    // actividad dada entre varias actividades")
-    // @Test
-    // void Matricular_a_MatriculaCorrectamente() throws ClubException {
-    // Grupo g;
-    // String codigo1 = "123A";
-    // String codigo2 = "123B";
-    // String nombreAct1 = "Kizomba";
-    // String nombreAct2 = "Pilates";
-    // int numMatriculas = 10;
-    // int numPlazas = 10;
-
-    // double tarifa = 25.0;
-    // g = new Grupo(codigo1, nombreAct1, numPlazas, 0, tarifa);
-    // clubDeportivo.anyadirActividad(g);
-    // g = new Grupo(codigo2, nombreAct2, numPlazas, 0, tarifa);
-    // clubDeportivo.anyadirActividad(g);
-    // clubDeportivo.matricular(nombreAct2, numMatriculas);
-    // String expected = nombre + " --> [ (" + codigo1 + " - " + nombreAct1 + " - "
-    // + tarifa + " euros - P:"
-    // + numPlazas
-    // + " - M:" + 0 + "), " + "(" + codigo2 + " - " + nombreAct2 + " - " + tarifa +
-    // " euros - P:"
-    // + numPlazas + " - M:" + numMatriculas + ") ]";
-
-    // assertEquals(clubDeportivo.toString(), expected);
-    // }
-
-    // @DisplayName("El método matricular debe matricular al número de personas
-    // proporcionado, teniendo varios grupos de una misma actividad y donde alguno
-    // está lleno")
-    // @Test
-    // void Matricular_VariosGruposConAlgunoLleno_MatriculaCorrectamente() throws
-    // ClubException {
-    // Grupo g1;
-    // Grupo g2;
-    // String codigo1 = "123A";
-    // String codigo2 = "123B";
-    // String nombreAct1 = "Kizomba";
-    // String nombreAct2 = "Kizomba";
-    // int numMatriculas = 10;
-    // int numPlazas = 10;
-
-    // double tarifa = 25.0;
-    // g1 = new Grupo(codigo1, nombreAct1, numPlazas, numMatriculas, tarifa);
-    // clubDeportivo.anyadirActividad(g1);
-    // g2 = new Grupo(codigo2, nombreAct2, numPlazas, 0, tarifa);
-    // clubDeportivo.anyadirActividad(g2);
-    // clubDeportivo.matricular(nombreAct2, numMatriculas);
-    // String expected = nombre + " --> [ (" + codigo1 + " - " + nombreAct1 + " - "
-    // + tarifa + " euros - P:"
-    // + numPlazas
-    // + " - M:" + numMatriculas + "), " + "(" + codigo2 + " - " + nombreAct2 + " -
-    // " + tarifa + " euros - P:"
-    // + numPlazas + " - M:" + numMatriculas + ") ]";
-
-    // assertEquals(clubDeportivo.toString(), expected);
-    // }
-
-    // @DisplayName("El método matricular debe matricular al número de personas
-    // proporcionado, teniendo varios grupos de una misma actividad y donde alguno
-    // está lleno")
-    // @Test
-    // void Matricular_NoHayPlazas_MatriculaCorrectamente() throws ClubException {
-    // Grupo g1;
-    // Grupo g2;
-    // String codigo1 = "123A";
-    // String codigo2 = "123B";
-    // String nombreAct1 = "Kizomba";
-    // String nombreAct2 = "Kizomba";
-    // int numMatriculas = 10;
-    // int numPlazas = 10;
-
-    // double tarifa = 25.0;
-    // g1 = new Grupo(codigo1, nombreAct1, numPlazas, 0, tarifa);
-    // clubDeportivo.anyadirActividad(g1);
-    // g2 = new Grupo(codigo2, nombreAct2, numPlazas, numMatriculas, tarifa);
-    // clubDeportivo.anyadirActividad(g2);
-    // clubDeportivo.matricular(nombreAct2, numMatriculas);
-    // String expected = nombre + " --> [ (" + codigo1 + " - " + nombreAct1 + " - "
-    // + tarifa + " euros - P:"
-    // + numPlazas
-    // + " - M:" + numMatriculas + "), " + "(" + codigo2 + " - " + nombreAct2 + " -
-    // " + tarifa + " euros - P:"
-    // + numPlazas + " - M:" + numMatriculas + ") ]";
-
-    // assertEquals(clubDeportivo.toString(), expected);
-    // }
 }

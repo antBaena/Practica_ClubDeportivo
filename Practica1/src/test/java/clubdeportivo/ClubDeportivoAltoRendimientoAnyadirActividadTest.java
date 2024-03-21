@@ -1,11 +1,7 @@
 package clubdeportivo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
 
 public class ClubDeportivoAltoRendimientoAnyadirActividadTest {
     ClubDeportivoAltoRendimiento clubDeportivoAltoRendimiento;
@@ -55,7 +51,7 @@ public class ClubDeportivoAltoRendimientoAnyadirActividadTest {
         });
     }
 
-    @DisplayName("El método anyadirActividad debe anyadir la actividad con el número de plazas maximo si el grupo tiene mas plazas que el maximo")
+    @DisplayName("El método anyadirActividad debe añadir la actividad con el número de plazas maximo si el grupo tiene mas plazas que el maximo")
     @Test
     public void AnyadirActividad_MasPlazasQueMaximo_ModificaLasPlazasDelGrupo() throws ClubException {
         int plazas = maximo + 1;
