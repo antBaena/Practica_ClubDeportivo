@@ -32,6 +32,9 @@ public class ClubDeportivo {
 	}
 
 	public void anyadirActividad(String[] datos) throws ClubException {
+		// ERROR encontrado: la longitud de los datos es incorrecta
+		if (datos.length != 5)
+			throw new ClubException("ERROR: El número de datos introducidos es incorrecto.");
 		try {
 			int plazas = Integer.parseInt(datos[2]);
 			int matriculados = Integer.parseInt(datos[3]);
@@ -44,7 +47,10 @@ public class ClubDeportivo {
 	}
 
 	public void anyadirActividad(Grupo g) throws ClubException {
-		if (g==null){ // ADDME: anaydido para comprobar los grupos nulos
+		// ERROR encontrado: grupos.length no puede ser distinto this.ngrupos
+		if (grupos.length == this.ngrupos)
+			throw new ClubException("ERROR: En este club no se admiten más grupos.");
+		if (g == null) { // ERROR encontrado: comprobar los grupos no son nulos
 			throw new ClubException("ERROR: el grupo es nulo");
 		}
 		int pos = buscar(g);
@@ -69,6 +75,10 @@ public class ClubDeportivo {
 	}
 
 	public void matricular(String actividad, int npersonas) throws ClubException {
+		// ERROR encontrado: comprobar que npersonas > 0
+		if (npersonas <= 0)
+			throw new ClubException("ERROR: el número de personas no es válido");
+
 		int plazas = plazasLibres(actividad);
 		if (plazas < npersonas) {
 			throw new ClubException("ERROR: no hay suficientes plazas libres para esa actividad en el club.");
@@ -77,11 +87,15 @@ public class ClubDeportivo {
 		while (i < ngrupos && npersonas > 0) {
 			if (actividad.equals(grupos[i].getActividad())) {
 				int plazasGrupo = grupos[i].plazasLibres();
-				if (npersonas >= plazasGrupo) {
-					grupos[i].matricular(plazasGrupo);
-					npersonas -= plazasGrupo;
-				} else {
-					grupos[i].matricular(npersonas);
+				if (plazasGrupo > 0) { // ERROR encontrado: si no hay plazas libres, no se puede matricul
+					if (npersonas >= plazasGrupo) {
+						grupos[i].matricular(plazasGrupo);
+						npersonas -= plazasGrupo;
+					} else {
+						grupos[i].matricular(npersonas);
+						npersonas = 0;
+						// ERROR encontrado: npersonas =0 al matricular todas
+					}
 				}
 			}
 			i++;
