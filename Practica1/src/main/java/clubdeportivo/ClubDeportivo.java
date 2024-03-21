@@ -32,7 +32,7 @@ public class ClubDeportivo {
 	}
 
 	public void anyadirActividad(String[] datos) throws ClubException {
-		// Error encontrado: la longitud de los datos es incorrecta
+		// ERROR encontrado: la longitud de los datos es incorrecta
 		if (datos.length != 5)
 			throw new ClubException("ERROR: El número de datos introducidos es incorrecto.");
 		try {
@@ -47,10 +47,10 @@ public class ClubDeportivo {
 	}
 
 	public void anyadirActividad(Grupo g) throws ClubException {
-		// Error encontrado: grupos.length cannot be more than this.ngrupos
+		// ERROR encontrado: grupos.length no puede ser distinto this.ngrupos
 		if (grupos.length == this.ngrupos)
 			throw new ClubException("ERROR: En este club no se admiten más grupos.");
-		if (g == null) { // ADDME: anaydido para comprobar los grupos nulos
+		if (g == null) { // ERROR encontrado: comprobar los grupos no son nulos
 			throw new ClubException("ERROR: el grupo es nulo");
 		}
 		int pos = buscar(g);
@@ -75,7 +75,7 @@ public class ClubDeportivo {
 	}
 
 	public void matricular(String actividad, int npersonas) throws ClubException {
-		// Error encontrado: comprobar que npersonas > 0
+		// ERROR encontrado: comprobar que npersonas > 0
 		if (npersonas <= 0)
 			throw new ClubException("ERROR: el número de personas no es válido");
 
@@ -87,14 +87,14 @@ public class ClubDeportivo {
 		while (i < ngrupos && npersonas > 0) {
 			if (actividad.equals(grupos[i].getActividad())) {
 				int plazasGrupo = grupos[i].plazasLibres();
-				if (plazasGrupo > 0) { // Error encontrado: si no hay plazas libres, no se puede matricul
+				if (plazasGrupo > 0) { // ERROR encontrado: si no hay plazas libres, no se puede matricul
 					if (npersonas >= plazasGrupo) {
 						grupos[i].matricular(plazasGrupo);
 						npersonas -= plazasGrupo;
 					} else {
 						grupos[i].matricular(npersonas);
 						npersonas = 0;
-						// Error npersonas =0 creo
+						// ERROR encontrado: npersonas =0 al matricular todas
 					}
 				}
 			}

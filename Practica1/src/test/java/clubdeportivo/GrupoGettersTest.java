@@ -46,7 +46,7 @@ public class GrupoGettersTest {
     @DisplayName("El método getMatriculados debe devolver los matriculados del grupo")
     @Test
     public void getMatriculados__DevuelveMatriculadosCorrectamente() {
-        assertEquals(grupo.getMatriculados(), plazas);
+        assertEquals(grupo.getMatriculados(), matriculados);
     }
 
     @DisplayName("El método getTarifa debe devolver la tarifa del grupo")
